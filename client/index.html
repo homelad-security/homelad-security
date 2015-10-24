@@ -1,15 +1,62 @@
 <head>
   <base href="/">
+  <script>
+  $(document)
+    .ready(function() {
+      // fix menu when passed
+      $('.masthead')
+        .visibility({
+          once: false,
+          onBottomPassed: function() {
+            $('.fixed.menu').transition('fade in');
+          },
+          onBottomPassedReverse: function() {
+            $('.fixed.menu').transition('fade out');
+          }
+        })
+      ;
+      // create sidebar and attach to menu open
+      $('.ui.sidebar')
+        .sidebar('attach events', '.toc.item')
+      ;
+    })
+  ;
+  </script>
 </head>
-<body>
-
-<div ng-app="homeladsecurity" ng-strict-di="">
-  <blaze-template name="loginButtons"></blaze-template>
-  <h1>
-    <a href="/squads">Squads</a>
-  </h1>
-
-  <div ui-view></div>
-</div>
-
+<body>    
+  <div ng-app="homeladsecurity" ng-strict-di="">
+    
+    <!-- Following Menu -->
+    <div class="ui large top fixed hidden menu">
+      <div class="ui container">
+        <a class="active item">Home</a>
+        <a class="item" href="/squads">Squads</a>
+        <div class="right menu">
+          <div class="item">
+            <a class="ui button"><blaze-template name="loginButtons"></blaze-template></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sidebar Menu -->
+    <div class="ui vertical inverted sidebar menu">
+      <a class="active item">Home</a>
+      <a class="item" href="/squads">Squads</a>
+      <a class="item"><blaze-template name="loginButtons"></blaze-template></a>
+    </div>
+    
+    <div class="pusher">
+      
+      <div class="ui text container">
+        <h1 class="ui inverted header">
+          Imagine-a-Company
+        </h1>
+        <h2>Do whatever you want when you want to.</h2>
+        <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div>
+      </div>
+    
+      <div ui-view></div>
+    </div>
+  </div>
 </body>

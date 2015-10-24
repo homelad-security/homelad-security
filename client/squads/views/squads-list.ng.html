@@ -1,12 +1,17 @@
-<form>
-  <label>Name</label>
-  <input ng-model="newSquad.name">
-  <button ng-click="addSquad(newSquad)">Add</button>
-  <button ng-click="removeAllSquads()">Remove All</button>
-</form>
-<ul>
-  <li ng-repeat="squad in squads">
-    <a href="/squads/{{squad._id}}">{{squad.name}}</a>
-    <button ng-click="removeSquad(squad)">X</button>
-  </li>
-</ul>
+<div class="ui container">
+  <form>
+    <label>Name</label>
+    <input ng-model="newSquad.name">
+    <button ng-click="addSquad(newSquad)">Add</button>
+    <button class="ui red button" ng-click="removeAllSquads()">Remove All</button>
+  </form>
+</div>
+
+<div class="ui container">
+  <ul class="ui list">
+    <li ng-repeat="squad in squads">
+      <a href="/squads/{{squad._id}}">{{squad.name}}</a>
+      <button class="ui red button" ng-click="removeSquad(squad)">X</button>
+    </li>
+  </ul>
+</div>

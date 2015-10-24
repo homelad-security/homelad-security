@@ -22,3 +22,5 @@ angularui:angular-ui-router
 accounts-facebook
 accounts-ui
 urigo:angular-blaze-template
+semantic:ui
+flemay:less-autoprefixer
