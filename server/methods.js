@@ -5,8 +5,9 @@ Meteor.methods({
     }
  
     Squads.insert({
-      name: squad.name,
-      creator: Meteor.userId()
+      'name': squad.name,
+      'creator': Meteor.userId(),
+      'members': [Meteor.userId()]
     });
   },
   removeSquad: function (squadId) {
@@ -22,5 +23,12 @@ Meteor.methods({
     }
     
     Squads.remove({});
+  },
+  enlistToSquad: function(squadId){
+    if(!Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+    
+    Squads.update({'_id':squadId}, {$set: {'members':[Meteor.userId()]}})
   }
 });
