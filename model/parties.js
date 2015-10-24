@@ -1,1 +1,1 @@
-Parties = new Mongo.Collection("parties");
+Squads = new Mongo.Collection("squads");

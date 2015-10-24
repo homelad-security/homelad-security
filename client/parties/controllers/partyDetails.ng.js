@@ -1,3 +1,3 @@
-angular.module("socially").controller("PartyDetailsCtrl", function ($scope, $stateParams, $meteor) {
-  $scope.party = $meteor.object(Parties, $stateParams.partyId);
+angular.module("homeladsecurity").controller("SquadDetailsCtrl", function ($scope, $stateParams, $meteor) {
+  $scope.squad = $meteor.object(Squads, $stateParams.squadId);
 });

@@ -1,17 +1,17 @@
-angular.module("socially").config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
+angular.module("homeladsecurity").config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider
-    .state('parties', {
-      url: '/parties',
-      templateUrl: 'client/parties/views/parties-list.ng.html',
-      controller: 'PartiesListCtrl'
+    .state('squads', {
+      url: '/squads',
+      templateUrl: 'client/squads/views/squads-list.ng.html',
+      controller: 'SquadsListCtrl'
     })
-    .state('partyDetails', {
-      url: '/parties/:partyId',
-      templateUrl: 'client/parties/views/party-details.ng.html',
-      controller: 'PartyDetailsCtrl'
+    .state('squadDetails', {
+      url: '/squads/:squadId',
+      templateUrl: 'client/squads/views/squad-details.ng.html',
+      controller: 'SquadDetailsCtrl'
     });
 
-  $urlRouterProvider.otherwise("/parties");
+  $urlRouterProvider.otherwise("/squads");
 });
