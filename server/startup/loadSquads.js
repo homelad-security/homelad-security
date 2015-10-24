@@ -6,6 +6,6 @@ Meteor.startup(function () {
       {'name': 'Gamma'}
     ];
     for (var i = 0; i < squads.length; i++)
-      Squads.insert({name: squads[i].name, description: squads[i].description});
+      Squads.insert({name: squads[i].name});
   }
 });

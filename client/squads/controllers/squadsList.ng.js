@@ -1,11 +1,15 @@
 angular.module("homeladsecurity").controller("SquadsListCtrl", function ($scope, $meteor) {
   $scope.squads = $meteor.collection(Squads);
-
-  $scope.remove = function (squad) {
-    $scope.squads.splice($scope.squads.indexOf(squad), 1);
+  
+  $scope.addSquad = function (newSquad) {
+    $meteor.call('addSquad', newSquad);
   };
 
-  $scope.removeAll = function () {
-    $scope.squads.remove();
+  $scope.removeSquad = function (squad) {
+    $meteor.call('removeSquad', squad._id);
+  };
+
+  $scope.removeAllSquads = function () {
+    $meteor.call('removeAllSquads');
   };
 });
