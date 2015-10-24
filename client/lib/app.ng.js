@@ -1,1 +1,1 @@
-angular.module('homeladsecurity',['angular-meteor', 'ui.router']);
+angular.module('homeladsecurity', ['angular-meteor', 'ui.router']);
