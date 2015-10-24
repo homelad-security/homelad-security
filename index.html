@@ -1,4 +1,16 @@
-<body ng-app="hls">
-  <blaze-template name="loginButtons"></blaze-template>
-  <div ng-include="'index.ng.html'"></div>
+<head>
+  <base href="/">
+</head>
+
+<body>
+
+<div ng-app="hls" ng-strict-di="">
+  <!--<blaze-template name="loginButtons"></blaze-template>-->
+  <h1>
+    <a href="/squads">Squads</a>
+  </h1>
+ 
+  <div ui-view></div>
+</div>
+ 
 </body>
