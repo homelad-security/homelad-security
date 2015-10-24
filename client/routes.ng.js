@@ -4,7 +4,7 @@ angular.module("homeladsecurity").config(function ($urlRouterProvider, $statePro
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: 'client/views/home.ng.html',
+      templateUrl: 'client/home/views/home.ng.html',
       controller: 'HomeCtrl'
     })
     .state('squads', {
@@ -16,6 +16,11 @@ angular.module("homeladsecurity").config(function ($urlRouterProvider, $statePro
       url: '/squads/:squadId',
       templateUrl: 'client/squads/views/squad-details.ng.html',
       controller: 'SquadDetailsCtrl'
+    })
+    .state('user', {
+      url: '/user',
+      templateUrl: 'client/user/views/user-profile.ng.html',
+      controller: 'UserProfileCtrl'
     });
 
   $urlRouterProvider.otherwise("/squads");

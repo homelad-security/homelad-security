@@ -1,17 +1,34 @@
-<div class="ui container">
+<!--<div class="ui container">
   <form>
     <label>Name</label>
     <input ng-model="newSquad.name">
     <button ng-click="addSquad(newSquad)">Add</button>
     <button class="ui red button" ng-click="removeAllSquads()">Remove All</button>
   </form>
-</div>
+</div>-->
+
 
 <div class="ui container">
-  <ul class="ui list">
-    <li ng-repeat="squad in squads">
-      <a href="/squads/{{squad._id}}">{{squad.name}}</a>
-      <button class="ui red button" ng-click="removeSquad(squad)">X</button>
-    </li>
-  </ul>
+  <h1 class="ui header">Squads</h1>
+</div>
+
+<div class="ui divider"></div>
+
+<div class="ui container">
+  
+  <div class="ui cards">
+    
+    <div class="card" ng-repeat="squad in squads">
+      <div class="content">
+        <div class="header">{{squad.name}}</div>
+        <div class="description">
+          TODO: squad description
+        </div>
+      </div>
+      <a class="ui bottom attached button" href="/squads/{{squad._id}}">
+        <i class="users icon"></i>
+        View
+      </a>
+    </div>
+  </div>
 </div>
