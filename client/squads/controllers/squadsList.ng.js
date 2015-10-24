@@ -1,4 +1,4 @@
-angular.module("homeladsecurity").controller("SquadsListCtrl", function ($scope, $meteor) {
+angular.module('homeladsecurity').controller('SquadsListCtrl', function ($scope, $meteor) {
   $scope.squads = $meteor.collection(Squads);
   
   $scope.addSquad = function (newSquad) {

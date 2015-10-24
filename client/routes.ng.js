@@ -2,10 +2,10 @@ angular.module("homeladsecurity").config(function ($urlRouterProvider, $statePro
   $locationProvider.html5Mode(true);
 
   $stateProvider
-    .state('squads', {
-      url: '/squads',
-      templateUrl: 'client/squads/views/squads-list.ng.html',
-      controller: 'SquadsListCtrl'
+    .state('home', {
+      url: '/',
+      templateUrl: 'client/views/home.ng.html',
+      controller: 'HomeCtrl'
     })
     .state('squads', {
       url: '/squads',
