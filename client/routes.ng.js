@@ -52,6 +52,15 @@ angular.module("homeladsecurity").config(function ($urlRouterProvider, $statePro
         return $meteor.requireUser();
       }
     }
+  }).state('works', {
+    url: '/works',
+    templateUrl: 'client/works/views/works-list.ng.html',
+    controller: 'WorksListCtrl',
+    resolve: {
+      "currentUser": function ($meteor) {
+        return $meteor.waitForUser();
+      }
+    }
   });
 
   $urlRouterProvider.otherwise("/");

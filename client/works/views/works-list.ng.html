@@ -1,0 +1,70 @@
+<div class="ui container">
+  <h1 class="ui header">Work Orders</h1>
+</div>
+
+<div class="ui divider"></div>
+
+<div class="ui container">
+  <button id="showCreateWork" class="ui primary labeled icon button">
+    <i class="add icon"></i> Post Work
+  </button>
+</div>
+
+<script>
+  $('#showCreateWork').click(function () {
+    $('#createWorkDialog').modal('show');
+  });
+
+</script>
+
+<div class="ui divider"></div>
+
+<div class="ui container">
+
+  <h2 class="ui header">Pending Work</h2>
+  <div class="ui cards">
+
+    <div class="squad-card card" ng-repeat="work in works">
+      <div class="content">
+        <div class="header"><span ng-bind="work.title"></span></div>
+        <div class="description" ng-bind="work.description"></div>
+      </div>
+      <a class="ui bottom attached button" href="/works/{{work._id}}">
+        <i class="users icon"></i> View
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<div id="createWorkDialog" class="ui standard modal">
+  <div class="header">Post Work</div>
+  <i class="close icon"></i>
+  <div class="content">
+    <div class="ui form">
+      <div class="field">
+        <label>Title</label>
+        <input type="text" ng-model="newWork.name" placeholder="e.g. Paint Fence">
+      </div>
+      <div class="field">
+        <label>Type</label>
+        <select ng-options="workType.label for workType in workTypes track by workType.id" ng-model="selected">
+          
+        </select>
+      </div>
+      <div class="field">
+        <label>Description</label>
+        <textarea rows="2" ng-model="newWork.description" placeholder="e.g. About an hour's job, need three people!"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">
+      Cancel
+    </div>
+    <button class="ui positive right labeled icon button" ng-click="addWork(newWork); newWork=''">
+      Post!
+      <i class="checkmark icon"></i>
+    </button>
+  </div>
+</div>

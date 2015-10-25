@@ -1,5 +1,5 @@
 <div class="ui container">
-  <h1 class="ui header">{{squad.name}} Squad<em ng-hide="!(squad | enlisted:$root.currentUser._id)"> (enlisted)</em></h1>
+  <h1 class="ui header"><span ng-bind="squad.name"></span> Squad<em ng-hide="!(squad | enlisted:$root.currentUser._id)"> (enlisted)</em></h1>
 </div>
 
 <div class="ui divider"></div>
@@ -7,7 +7,7 @@
 <div class="ui container">
   
   <div class="ui segment">
-    <p>TODO: description</p>
+    <p ng-bind="squad.description"></p>
   </div>
   
   <div class="ui menu">
@@ -31,8 +31,8 @@
       <div class="item" ng-repeat="member in squad.members | orderBy : xp : reverse">
         <i class="user big icon"></i>
         <div class="content">
-          <div class="header">{{ member.username }}</div>
-          {{ member.rank }} ({{ member.xp }} XP)
+          <div class="header"><span ng-bind="member.username"></span></div>
+          <span ng-bind="member.rank"></span><span ng-hide="!member.xp"> (<span ng-bind="member.xp"></span> XP)</span>
         </div>
       </div>
     </div>

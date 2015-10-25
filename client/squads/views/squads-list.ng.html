@@ -43,26 +43,25 @@
 <div id="createSquadDialog" class="ui modal">
   <div class="header">Create a Squad</div>
   <i class="close icon"></i>
-  <form novalidate class="ui form">
-    <div class="content">
+  <div class="content">
+    <div class="ui form">
       <div class="field">
         <label for="squadname">Name</label>
         <input name="squadname" type="text" ng-model="newSquad.name" placeholder="e.g. {{ availableSquadName }}">
       </div>
       <div class="field">
         <label for="squaddesc">Description</label>
-        <textarea name="squaddesc" rows="2" ng-model="newSquad.description"
-                  placeholder="e.g. West End and Thorpe Alumni, for the community!"></textarea>
+        <textarea name="squaddesc" rows="2" ng-model="newSquad.description" placeholder="e.g. West End and Thorpe Alumni, for the community!"></textarea>
       </div>
     </div>
-    <div class="actions">
-      <div class="ui black deny button">
-        Cancel
-      </div>
-      <button class="ui positive right labeled icon button" ng-click="addSquad(newSquad); newSquad=''">
-        Create!
-        <i class="checkmark icon"></i>
-      </button>
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">
+      Cancel
     </div>
-  </form>
+    <button class="ui positive right labeled icon button" ng-click="addSquad(newSquad); newSquad=''">
+      Create!
+      <i class="checkmark icon"></i>
+    </button>
+  </div>
 </div>
