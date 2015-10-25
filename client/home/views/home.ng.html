@@ -11,27 +11,27 @@
   
   </div>
   
-  <div class="ui divider"></div>
+  <!--<div class="ui divider"></div>-->
   
-  <div class="ui container">
+  <!--<div class="ui container">
   
-  <h2 ng-show="$root.currentUser._id != null" class="ui header">My Squads</h2>
-  <div class="ui cards">
-    
-    <div class="squad-card card" ng-repeat="squad in squads | userSquads:$root.currentUser._id">
-      <div class="content">
-        <div class="header">{{squad.name}}<em ng-hide="!(squad | enlisted:$root.currentUser._id)"> (enlisted)</em></div>
-        <div class="description">
-          {{ squad.description }}
+    <h2 ng-show="$root.currentUser._id != null" class="ui header">My Squads</h2>
+    <div class="ui cards">
+      
+      <div class="squad-card card" ng-repeat="squad in squads | userSquads:$root.currentUser._id">
+        <div class="content">
+          <div class="header">{{squad.name}}<em ng-hide="!(squad | enlisted:$root.currentUser._id)"> (enlisted)</em></div>
+          <div class="description">
+            {{ squad.description }}
+          </div>
         </div>
+        <a class="ui bottom attached button" href="/squads/{{squad._id}}">
+          <i class="users icon"></i>
+          View
+        </a>
       </div>
-      <a class="ui bottom attached button" href="/squads/{{squad._id}}">
-        <i class="users icon"></i>
-        View
-      </a>
+      
     </div>
-    
-  </div>
-</div>
+  </div>-->
   
 </div>
