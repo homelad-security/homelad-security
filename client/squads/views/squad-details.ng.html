@@ -1,5 +1,5 @@
 <div class="ui container">
-  <h1 class="ui header">{{squad.name}}</h1>
+  <h1 class="ui header">{{squad.name}} Squad<em ng-hide="!(squad | enlisted:$root.currentUser._id)"> (enlisted)</em></h1>
 </div>
 
 <div class="ui divider"></div>
@@ -10,13 +10,33 @@
     <p>TODO: description</p>
   </div>
   
-  <div class="ui segment">
-    <button class="ui icon button" 
-            data-content="Enlist in this squad" 
-            data-variation="basic" 
-            ng-click="enlistToSquad(squad._id)">
-      <i class="add icon"></i>
-    </button>
+  <div class="ui menu">
+    <a class="item" ng-hide="squad | enlistedOrMember:$root.currentUser._id" ng-click="enlistToSquad()">
+      <i class="users icon"></i>
+      Enlist
+    </a>
+    <a class="item" ng-hide="!(squad | enlisted:$root.currentUser._id)" ng-click="leaveSquad()">
+      <i class="remove circle icon"></i>
+      Cancel Enlistment
+    </a>
+    <a class="item" ng-hide="!(squad | member:$root.currentUser._id)" ng-click="leaveSquad()">
+      <i class="remove circle icon"></i>
+      Leave
+    </a>
+  </div>
+  
+  <div class="ui segment" ng-hide="!squad.members || squad.members.length === 0">
+    
+    <div class="ui horizontal list">
+      <div class="item" ng-repeat="member in squad.members | orderBy : xp : reverse">
+        <i class="user big icon"></i>
+        <div class="content">
+          <div class="header">{{ member.username }}</div>
+          {{ member.rank }} ({{ member.xp }} XP)
+        </div>
+      </div>
+    </div>
+    
   </div>
 
 </div>

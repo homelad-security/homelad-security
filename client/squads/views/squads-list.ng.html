@@ -1,13 +1,3 @@
-<!--<div class="ui container">
-  <form>
-    <label>Name</label>
-    <input ng-model="newSquad.name">
-    <button ng-click="addSquad(newSquad)">Add</button>
-    <button class="ui red button" ng-click="removeAllSquads()">Remove All</button>
-  </form>
-</div>-->
-
-
 <div class="ui container">
   <h1 class="ui header">Squads</h1>
 </div>
@@ -15,14 +5,30 @@
 <div class="ui divider"></div>
 
 <div class="ui container">
+  <button id="showCreateSquad" class="ui primary labeled icon button">
+    <i class="add icon"></i>
+    New Squad
+  </button>
+</div>
+
+<script>
+  $('#showCreateSquad').click(function () {
+    $('#createSquadDialog').modal('show');
+  });
+</script>
+
+<div class="ui divider"></div>
+
+<div class="ui container">
   
+  <h2 class="ui header">Existing Squads</h2>
   <div class="ui cards">
     
-    <div class="card" ng-repeat="squad in squads">
+    <div class="squad-card card" ng-repeat="squad in squads">
       <div class="content">
-        <div class="header">{{squad.name}}</div>
+        <div class="header">{{squad.name}}<em ng-hide="!(squad | enlisted:$root.currentUser._id)"> (enlisted)</em></div>
         <div class="description">
-          TODO: squad description
+          {{ squad.description }}
         </div>
       </div>
       <a class="ui bottom attached button" href="/squads/{{squad._id}}">
@@ -30,5 +36,33 @@
         View
       </a>
     </div>
+    
   </div>
+</div>
+
+<div id="createSquadDialog" class="ui modal">
+  <div class="header">Create a Squad</div>
+  <i class="close icon"></i>
+  <form novalidate class="ui form">
+    <div class="content">
+      <div class="field">
+        <label for="squadname">Name</label>
+        <input name="squadname" type="text" ng-model="newSquad.name" placeholder="e.g. {{ availableSquadName }}">
+      </div>
+      <div class="field">
+        <label for="squaddesc">Description</label>
+        <textarea name="squaddesc" rows="2" ng-model="newSquad.description"
+                  placeholder="e.g. West End and Thorpe Alumni, for the community!"></textarea>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui black deny button">
+        Cancel
+      </div>
+      <button class="ui positive right labeled icon button" ng-click="addSquad(newSquad); newSquad=''">
+        Create!
+        <i class="checkmark icon"></i>
+      </button>
+    </div>
+  </form>
 </div>

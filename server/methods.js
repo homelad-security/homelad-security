@@ -1,11 +1,14 @@
 Meteor.methods({
-  addSquad: function (squad) {
+  addSquad: function (newSquad) {
     if (!Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
+    
+    console.log('addSquad: ' + newSquad);
  
     Squads.insert({
-      'name': squad.name,
+      'name': newSquad.name,
+      'description': newSquad.description,
       'creator': Meteor.userId(),
       'members': [Meteor.userId()]
     });
@@ -24,11 +27,34 @@ Meteor.methods({
     
     Squads.remove({});
   },
-  enlistToSquad: function(squadId){
+  enlistToSquad: function (squadId){
     if(!Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
     
-    Squads.update({'_id':squadId}, {$set: {'members':[Meteor.userId()]}})
+    Squads.update({ '_id': squadId }, {
+      $addToSet: {
+        'enlistings': {
+          'userid': Meteor.userId(),
+          'username': Meteor.user().username
+        }
+      }
+    });
+  },
+  leaveSquad: function (squadId) {
+    if(!Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+    
+    Squads.update({ '_id': squadId }, {
+      $pull: {
+        'enlistings': {
+          'userid': Meteor.userId()
+        },
+        'members': {
+          'userid': Meteor.userId()
+        }
+      }
+    });
   }
 });

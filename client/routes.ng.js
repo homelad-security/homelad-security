@@ -33,7 +33,12 @@ angular.module("homeladsecurity").config(function ($urlRouterProvider, $statePro
   }).state('squads', {
     url: '/squads',
     templateUrl: 'client/squads/views/squads-list.ng.html',
-    controller: 'SquadsListCtrl'
+    controller: 'SquadsListCtrl',
+    resolve: {
+      "currentUser": function ($meteor) {
+        return $meteor.waitForUser();
+      }
+    }
   }).state('squadDetails', {
     url: '/squads/:squadId',
     templateUrl: 'client/squads/views/squad-details.ng.html',
