@@ -65,7 +65,10 @@ Meteor.methods({
     Works.insert({
       'title': newWork.title,
       'description': newWork.description,
-      'creator': Meteor.userId()
+      'type': newWork.type,
+      'bounty': newWork.bounty,
+      'creator': Meteor.userId(),
+      'created': (new Date).getTime()
     });
   },
 });

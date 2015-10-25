@@ -23,18 +23,45 @@
 
   <h2 class="ui header">Pending Work</h2>
   <div class="ui cards">
+    
+    <div class="squad-card card" ng-repeat="work in works | orderBy : created">
+      <div class="content">
+        <i class="right floated ui marker icon"></i>
+        <div class="header">
+          <span ng-bind="work.title"></span>
+        </div>
+        <div class="meta">
+          Worth <span ng-bind="work.bounty"></span> XP
+        </div>
+        <div class="description">
+          <span ng-bind="work.description"></span>
+        </div>
+      </div>
+      <div class="extra content">
+        <div class="ui one buttons">
+          <button class="ui basic green button">Accept</button>
+          <a class="ui basic grey button" href="/works/{{work._id}}">View</a>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!--<div class="ui cards">
 
     <div class="squad-card card" ng-repeat="work in works">
       <div class="content">
         <div class="header"><span ng-bind="work.title"></span></div>
-        <div class="description" ng-bind="work.description"></div>
+        <div ng-bind="work.description"></div>
+        <div class="" ng-bind="work.bounty"></div>
       </div>
       <a class="ui bottom attached button" href="/works/{{work._id}}">
         <i class="users icon"></i> View
       </a>
     </div>
 
-  </div>
+  </div>-->
 </div>
 
 <div id="createWorkDialog" class="ui standard modal">
@@ -44,12 +71,11 @@
     <div class="ui form">
       <div class="field">
         <label>Title</label>
-        <input type="text" ng-model="newWork.name" placeholder="e.g. Paint Fence">
+        <input type="text" ng-model="newWork.title" placeholder="e.g. Paint Fence">
       </div>
       <div class="field">
         <label>Type</label>
-        <select ng-options="workType.label for workType in workTypes track by workType.id" ng-model="selected">
-          
+        <select ng-options="workType.label for workType in workTypes track by workType.id" ng-model="newWork.type">
         </select>
       </div>
       <div class="field">
