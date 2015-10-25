@@ -71,4 +71,49 @@ Meteor.methods({
       'created': (new Date).getTime()
     });
   },
+  acceptWork: function (work, squad) {
+    if (!Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+    
+    Works.update({
+      '_id': work._id
+    },{
+      $set: {
+        'squad': {
+          '_id': squad._id,
+          'name': squad.name
+        }
+      }
+    });
+    
+    Squads.update({
+      '_id': squad._id
+    },{
+      $addToSet: {
+        'works': {
+          '_id': work._id,
+          'title': work.title
+        }
+      }
+    });
+  },
+  completeWork: function (work, squad) {
+    if (!Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+    
+    Works.find({
+      '_id': work._id
+    }, function (err, doc) {
+      Squads.update({
+        '_id': squad._id
+      },{
+        $inc: {
+          xp: doc.bounty
+        }
+      });
+      Works.remove({ '_id': work._id });
+    });
+  }
 });

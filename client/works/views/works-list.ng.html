@@ -14,17 +14,16 @@
   $('#showCreateWork').click(function () {
     $('#createWorkDialog').modal('show');
   });
-
 </script>
 
 <div class="ui divider"></div>
 
 <div class="ui container">
 
-  <h2 class="ui header">Pending Work</h2>
+  <h2 class="ui header">Available Work</h2>
   <div class="ui cards">
     
-    <div class="squad-card card" ng-repeat="work in works | orderBy : created">
+    <div class="squad-card card" ng-repeat="work in works | availableWork | orderBy : created">
       <div class="content">
         <i class="right floated ui marker icon"></i>
         <div class="header">
@@ -39,29 +38,13 @@
       </div>
       <div class="extra content">
         <div class="ui one buttons">
-          <button class="ui basic green button">Accept</button>
-          <a class="ui basic grey button" href="/works/{{work._id}}">View</a>
+          <button class="ui basic green button" ng-click="chooseSquad(work)">Accept</button>
         </div>
       </div>
     </div>
     
   </div>
   
-  
-  <!--<div class="ui cards">
-
-    <div class="squad-card card" ng-repeat="work in works">
-      <div class="content">
-        <div class="header"><span ng-bind="work.title"></span></div>
-        <div ng-bind="work.description"></div>
-        <div class="" ng-bind="work.bounty"></div>
-      </div>
-      <a class="ui bottom attached button" href="/works/{{work._id}}">
-        <i class="users icon"></i> View
-      </a>
-    </div>
-
-  </div>-->
 </div>
 
 <div id="createWorkDialog" class="ui standard modal">
@@ -75,8 +58,7 @@
       </div>
       <div class="field">
         <label>Type</label>
-        <select ng-options="workType.label for workType in workTypes track by workType.id" ng-model="newWork.type">
-        </select>
+        <select ng-options="workType.label for workType in workTypes track by workType.id" ng-model="newWork.type"></select>
       </div>
       <div class="field">
         <label>Description</label>
@@ -90,6 +72,40 @@
     </div>
     <button class="ui positive right labeled icon button" ng-click="addWork(newWork); newWork=''">
       Post!
+      <i class="checkmark icon"></i>
+    </button>
+  </div>
+</div>
+
+<div id="acceptWorkDialog" class="ui standard modal">
+  <div class="header">Accept Work</div>
+  <i class="close icon"></i>
+  <div class="content">
+    <div class="ui form">
+      <div class="field">
+        <label>Title</label>
+        <input type="text" ng-model="selectedWork.title" readonly>
+      </div>
+      <div class="field">
+        <label>Type</label>
+        <input type="text" ng-model="selectedWork.type.name" readonly>
+      </div>
+      <div class="field">
+        <label>Description</label>
+        <textarea rows="2" ng-model="selectedWork.description" readonly></textarea>
+      </div>
+      <div class="field">
+        <label>Squad</label>
+        <select ng-options="squad.name for squad in userSquads track by squad._id" ng-model="assignSquad" readonly></select>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">
+      Cancel
+    </div>
+    <button class="ui positive right labeled icon button" ng-click="acceptWork(selectedWork, assignSquad); selectedWork=''">
+      Accept!
       <i class="checkmark icon"></i>
     </button>
   </div>

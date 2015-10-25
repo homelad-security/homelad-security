@@ -38,5 +38,31 @@
     </div>
     
   </div>
+  
+  <div class="ui segment">
+    <h3 class="ui header">Active Work</h3>
+    
+    <div class="ui cards">
+    
+      <div class="squad-card card" ng-repeat="work in works | squadWork : squad._id">
+        <div class="content">
+          <i class="right floated ui marker icon"></i>
+          <div class="header">
+            <span ng-bind="work.title"></span>
+          </div>
+          <div class="meta">
+            Worth <span ng-bind="work.bounty"></span> XP
+          </div>
+        </div>
+        <div class="extra content">
+          <div class="ui one buttons">
+            <button class="ui basic green button" ng-click="completeWork(work)">Complete</button>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+    
+  </div>
 
 </div>
