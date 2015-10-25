@@ -32,14 +32,29 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
     
-    Squads.update({ '_id': squadId }, {
-      $addToSet: {
-        'enlistings': {
-          'userid': Meteor.userId(),
-          'username': Meteor.user().username
-        }
-      }
+    var foundSquad = Squads.findOne({
+      '_id': squadId
     });
+    
+    if (!foundSquad.members || foundSquad.members.length === 0) {
+      Squads.update({ '_id': squadId }, {
+        $addToSet: {
+          'members': {
+            'userid': Meteor.userId(),
+            'username': Meteor.user().profile.name
+          }
+        }
+      });
+    } else {
+      Squads.update({ '_id': squadId }, {
+        $addToSet: {
+          'enlistings': {
+            'userid': Meteor.userId(),
+            'username': Meteor.user().profile.name
+          }
+        }
+      });
+    }
   },
   leaveSquad: function (squadId) {
     if(!Meteor.userId()) {
@@ -67,7 +82,7 @@ Meteor.methods({
       'description': newWork.description,
       'type': newWork.type,
       'bounty': newWork.bounty,
-      'creator': Meteor.userId(),
+      'creator': { userid: Meteor.userId(), username: Meteor.user().profile.name },
       'created': (new Date).getTime()
     });
   },
@@ -107,13 +122,22 @@ Meteor.methods({
       '_id': work._id
     });
     
+    var foundSquad = Squads.findOne({
+      '_id': squadid
+    });
+    
+    foundSquad.xp += foundWork.bounty;
+    if (foundSquad.members) {
+      var bountyShare = Math.floor(foundWork.bounty / foundSquad.members.length);
+      console.log(bountyShare);
+      foundSquad.members.forEach(function (member) {
+        member.xp += bountyShare;
+      });
+    }
+    
     Squads.update({
       '_id': squadid
-    },{
-      $inc: {
-        xp: foundWork.bounty
-      }
-    });
+    }, foundSquad);
     
     Works.remove({ '_id': work._id });
   }

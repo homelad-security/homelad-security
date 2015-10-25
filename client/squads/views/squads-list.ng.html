@@ -2,9 +2,9 @@
   <h1 class="ui header">Squads</h1>
 </div>
 
-<div class="ui divider"></div>
+<div class="ui divider" ng-hide="!currentUser"></div>
 
-<div class="ui container">
+<div class="ui container" ng-hide="!currentUser">
   <button id="showCreateSquad" class="ui primary labeled icon button">
     <i class="add icon"></i>
     New Squad
@@ -24,8 +24,9 @@
   <h2 class="ui header">Existing Squads</h2>
   <div class="ui cards">
     
-    <div class="squad-card card" ng-repeat="squad in squads">
+    <div class="squad-card card" ng-repeat="squad in squads | orderBy : xp : reverse">
       <div class="content">
+        <i ng-show="squad | enlistedOrMember : $root.currentUser._id" class="right floated ui user icon"></i>
         <div class="header"><span ng-bind="squad.name"></span><em ng-hide="!(squad | enlisted:$root.currentUser._id)"> (enlisted)</em></div>
         <div class="description">
           {{ squad.description }}<br />{{ squad.xp || 0 }} XP

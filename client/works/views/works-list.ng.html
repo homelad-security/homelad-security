@@ -2,9 +2,9 @@
   <h1 class="ui header">Work Orders</h1>
 </div>
 
-<div class="ui divider"></div>
+<div class="ui divider" ng-hide="!currentUser"></div>
 
-<div class="ui container">
+<div class="ui container" ng-hide="!currentUser">
   <button id="showCreateWork" class="ui primary labeled icon button">
     <i class="add icon"></i> Post Work
   </button>
@@ -30,7 +30,7 @@
           <span ng-bind="work.title"></span>
         </div>
         <div class="meta">
-          Worth <span ng-bind="work.bounty"></span> XP
+          Created by <span ng-bind="work.creator.username"></span>, worth <span ng-bind="work.bounty"></span> XP
         </div>
         <div class="description">
           <span ng-bind="work.description"></span>

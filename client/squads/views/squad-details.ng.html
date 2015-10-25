@@ -19,7 +19,7 @@
     <p ng-bind="squad.description"></p>
   </div>
   
-  <div class="ui menu">
+  <div class="ui menu" ng-hide="!currentUser">
     <a class="item" ng-hide="squad | enlistedOrMember:$root.currentUser._id" ng-click="enlistToSquad()">
       <i class="users icon"></i>
       Enlist
