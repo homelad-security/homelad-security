@@ -10,7 +10,7 @@ Meteor.methods({
       'name': newSquad.name,
       'description': newSquad.description,
       'creator': Meteor.userId(),
-      'members': [{ 'userid': Meteor.userId(), 'username': Meteor.user().profile.name }]
+      'members': [{ 'userid': Meteor.userId(), 'username': Meteor.user().profile.name, 'xp': 0 }]
     });
   },
   removeSquad: function (squadId) {
@@ -41,7 +41,8 @@ Meteor.methods({
         $addToSet: {
           'members': {
             'userid': Meteor.userId(),
-            'username': Meteor.user().profile.name
+            'username': Meteor.user().profile.name,
+            'xp': 0
           }
         }
       });
