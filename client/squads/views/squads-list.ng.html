@@ -26,9 +26,9 @@
     
     <div class="squad-card card" ng-repeat="squad in squads">
       <div class="content">
-        <div class="header">{{squad.name}}<em ng-hide="!(squad | enlisted:$root.currentUser._id)"> (enlisted)</em></div>
+        <div class="header"><span ng-bind="squad.name"></span><em ng-hide="!(squad | enlisted:$root.currentUser._id)"> (enlisted)</em></div>
         <div class="description">
-          {{ squad.description }}
+          {{ squad.description }}<br />{{ squad.xp || 0 }} XP
         </div>
       </div>
       <a class="ui bottom attached button" href="/squads/{{squad._id}}">

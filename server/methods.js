@@ -98,22 +98,23 @@ Meteor.methods({
       }
     });
   },
-  completeWork: function (work, squad) {
+  completeWork: function (work, squadid) {
     if (!Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
     
-    Works.find({
+    var foundWork = Works.findOne({
       '_id': work._id
-    }, function (err, doc) {
-      Squads.update({
-        '_id': squad._id
-      },{
-        $inc: {
-          xp: doc.bounty
-        }
-      });
-      Works.remove({ '_id': work._id });
     });
+    
+    Squads.update({
+      '_id': squadid
+    },{
+      $inc: {
+        xp: foundWork.bounty
+      }
+    });
+    
+    Works.remove({ '_id': work._id });
   }
 });

@@ -1,5 +1,14 @@
 <div class="ui container">
   <h1 class="ui header"><span ng-bind="squad.name"></span> Squad<em ng-hide="!(squad | enlisted:$root.currentUser._id)"> (enlisted)</em></h1>
+  <div class="content">
+    
+    <div class="ui progress" data-percent="squad.xp">
+      <div class="bar" style="transition-duration: 300ms; width: {{ squad.xp || 0 }}%;">
+        <div class="progress"><span ng-bind="squad.xp || 0"></span> XP </div>
+      </div>
+    </div>
+    
+  </div>
 </div>
 
 <div class="ui divider"></div>
