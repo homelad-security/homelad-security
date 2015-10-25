@@ -1,9 +1,22 @@
-Here you will see and change the details of the squad:{{squad.name}}
-
-<div class="ui icon button" data-content="Add users to your feed">
-  <i class="add icon"></i>
+<div class="ui container">
+  <h1 class="ui header">{{squad.name}}</h1>
 </div>
 
-<button class="ui icon button" data-content="Enlist in this squad" ng-click="enlistToSquad(squad._id)">
-  <i class="add icon"></i>
-</button>
+<div class="ui divider"></div>
+
+<div class="ui container">
+  
+  <div class="ui segment">
+    <p>TODO: description</p>
+  </div>
+  
+  <div class="ui segment">
+    <button class="ui icon button" 
+            data-content="Enlist in this squad" 
+            data-variation="basic" 
+            ng-click="enlistToSquad(squad._id)">
+      <i class="add icon"></i>
+    </button>
+  </div>
+
+</div>
