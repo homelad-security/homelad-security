@@ -48,7 +48,7 @@
     
   </div>
   
-  <div class="ui segment">
+  <div class="ui segment" ng-hide="!(works | squadWork : squad._id) || (works | squadWork : squad._id).length === 0">
     <h3 class="ui header">Active Work</h3>
     
     <div class="ui cards">
